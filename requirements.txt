@@ -1,7 +1,6 @@
 appdirs==1.4.3
 cssselect==1.0.1
 dateutils==0.6.6
-IMDbPY==5.1
 lxml==3.7.3
 packaging==16.8
 purl==1.3
