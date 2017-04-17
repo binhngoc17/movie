@@ -1,0 +1,23 @@
+{
+  "name": "movie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "torrent-search-api": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binhngoc17/movie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binhngoc17/movie/issues"
+  },
+  "homepage": "https://github.com/binhngoc17/movie#readme"
+}
