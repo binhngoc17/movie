@@ -29,11 +29,13 @@ def hello():
                     recipient_id = x['sender']['id']
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        prefix, command = message.split('.')
-                        if not command_prefix.get(prefix):
-                            bot.send_text_message(recipient_id, message)
-                            break
-                        command_prefix[prefix](recipient_id).execute(command)
+                        message_blocks = message.split('.')
+                        if len(message_blocks) > 1:
+                            prefix, command = message_blocks
+                            if command_prefix.get(prefix):
+                                command_prefix[prefix](recipient_id).execute(command)
+                        bot.send_text_message(recipient_id, message)
+
                     # if x['message'].get('attachments'):
                     #     for att in x['message'].get('attachments'):
                     #         bot.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
