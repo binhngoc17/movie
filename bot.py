@@ -3,15 +3,13 @@ This bot listens to port 5002 for incoming connections from Facebook. It takes
 in any messages that the bot receives and echos it back.
 """
 from flask import Flask, request
-from pymessenger.bot import Bot
-import os
-
+from command_handlers.movies import Movies
+from util import bot
 app = Flask(__name__)
 
-VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
-ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-bot = Bot(ACCESS_TOKEN)
-
+command_prefix = {
+    'movies': Movies
+}
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
@@ -31,7 +29,11 @@ def hello():
                     recipient_id = x['sender']['id']
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        bot.send_text_message(recipient_id, message)
+                        prefix, command = message.split('.')
+                        if not message.get(command_prefix):
+                            bot.send_text_message(recipient_id, message)
+                            break
+                        command_prefix[command_prefix](recipient_id).execute(command)
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
                             bot.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
