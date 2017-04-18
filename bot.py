@@ -30,10 +30,10 @@ def hello():
                     if x['message'].get('text'):
                         message = x['message']['text']
                         prefix, command = message.split('.')
-                        if not message.get(command_prefix):
+                        if not command_prefix.get(prefix):
                             bot.send_text_message(recipient_id, message)
                             break
-                        command_prefix[command_prefix](recipient_id).execute(command)
+                        command_prefix[prefix](recipient_id).execute(command)
                     # if x['message'].get('attachments'):
                     #     for att in x['message'].get('attachments'):
                     #         bot.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
