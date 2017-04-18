@@ -34,7 +34,8 @@ def hello():
                             prefix, command = message_blocks
                             if command_prefix.get(prefix):
                                 command_prefix[prefix](recipient_id).execute(command)
-                        bot.send_text_message(recipient_id, message)
+                        else:
+                            bot.send_text_message(recipient_id, message)
 
                     # if x['message'].get('attachments'):
                     #     for att in x['message'].get('attachments'):
