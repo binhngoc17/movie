@@ -5,11 +5,15 @@ in any messages that the bot receives and echos it back.
 from flask import Flask, request
 from command_handlers.movies import Movies
 from util import bot
+import os
+
 app = Flask(__name__)
 
 command_prefix = {
     'movies': Movies
 }
+
+VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
